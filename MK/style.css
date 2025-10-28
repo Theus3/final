@@ -200,47 +200,39 @@ header nav a:hover::after { width: 100%; }
 .flip-card { 
     background-color: transparent; 
     width: 100%; 
-    height: 380px; 
-    border: none; 
-    cursor: pointer; 
-}
-
-.consequence-grid {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    justify-content: center; 
-    gap: 30px; 
-    perspective: 1000px;
-    max-width: 800px; 
-    margin: 0 auto;
-}
-.flip-card { 
-    background-color: transparent; 
-    width: 100%; 
-    height: 380px; 
+    height: auto; /* <-- MODIFICADO (removido 380px) */
+    min-height: 300px; /* <-- ADICIONADO */
     border: none; 
     cursor: pointer; 
 }
 .flip-card-inner {
     position: relative; 
     width: 100%; 
-    height: 100%;
+    height: auto; /* <-- MODIFICADO (removido 100%) */
     transition: transform 0.7s; 
     transform-style: preserve-3d;
     border-radius: var(--border-radius); 
     box-shadow: var(--shadow);
+    
+    /* ADICIONADO PARA ALTURA AUTOMÁTICA */
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
 }
 .flip-card-inner.is-flipped { 
     transform: rotateY(180deg); 
 }
 .flip-card-front, .flip-card-back {
-    position: absolute; 
+    position: relative; /* <-- MODIFICADO (removido 'absolute') */
     width: 100%; 
-    height: 100%; 
+    height: auto; /* <-- MODIFICADO (removido 100%) */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden; 
     border-radius: var(--border-radius); 
     padding: 30px; 
+    
+    /* ADICIONADO PARA ALTURA AUTOMÁTICA */
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 /* --- FRENTE DO CARD --- */
@@ -262,8 +254,6 @@ header nav a:hover::after { width: 100%; }
     color: #fff; 
     margin-bottom: 25px;
 }
-
-/* ADICIONADO PARA COLORIR O FUNDO DOS ÍCONES DE "CONSEQUÊNCIAS" */
 .flip-card-front .card-icon.orange { background-color: var(--card-orange); }
 .flip-card-front .card-icon.lightblue { background-color: var(--card-lightblue); }
 .flip-card-front .card-icon.green { background-color: var(--card-green); }
@@ -280,51 +270,43 @@ header nav a:hover::after { width: 100%; }
     display: flex; 
     flex-direction: column;
 }
-
 .flip-card-back h4 { 
     font-size: 1.5rem; 
-    color: var(--light-text);
+    color: white; /* <-- MODIFICADO (corrigido) */
     margin-bottom: 1.5rem; 
     text-align: center; 
     padding-bottom: 8px; 
     border-bottom: 2px solid rgba(255, 255, 255, 0.1); 
 }
-
 .flip-card-back p { 
     margin-bottom: 1rem; 
 }
-
 .flip-card-back .nutrients { 
     font-size: 0.95rem; 
-    color: var(--light-text);
+    color: rgba(255, 255, 255, 0.9); /* <-- MODIFICADO (corrigido) */
     line-height: 1.4; 
     margin-bottom: 0; 
 }
 .flip-card-back .nutrients strong {
     color: var(--card-orange); 
 }
-
 .flip-card-back .explanation { 
     font-size: 0.95rem; 
     line-height: 1.7; 
-    color: var(--soft-text); 
+    color: rgba(255, 255, 255, 0.9); /* <-- MODIFICADO (corrigido) */
     margin-top: 0.8rem; 
     margin-bottom: 0; 
     padding-top: 0.8rem; 
     border-top: 1px dashed rgba(255, 255, 255, 0.2); 
 }
-
 .flip-card-back .explanation strong {
-    color: var(--light-text);
+    color: #fff; /* <-- MODIFICADO (corrigido) */
 }
 
 
 /* SEÇÃO EFEITOS A LONGO PRAZO - TIMELINE */
 :root {
-    --accent-color: #4FC3F7; 
-    --timeline-red: #EF4444; 
-    --timeline-orange: #F97316;
-    --timeline-purple: #A855F7;
+    /* ... (variáveis já definidas no topo) ... */
 }
 
 #efeitos-longo-prazo { 
@@ -341,7 +323,6 @@ header nav a:hover::after { width: 100%; }
     margin: 0 auto; 
     padding: 20px 0 40px 0; 
 }
-
 .timeline::after {
     content: ''; 
     position: absolute; 
@@ -353,7 +334,6 @@ header nav a:hover::after { width: 100%; }
     margin-left: -1.5px; 
     z-index: 0;
 }
-
 .timeline::before {
     content: ''; 
     position: absolute; 
@@ -421,17 +401,14 @@ header nav a:hover::after { width: 100%; }
     margin: 0 auto;
     position: relative;
 }
-
 .slider-container {
     width: 100%;
     overflow: hidden;
     border-radius: var(--border-radius);
 }
-
 .slider-track {
     display: flex;
 }
-
 .slide-card {
     flex: 0 0 100%; 
     width: 100%;
@@ -444,7 +421,6 @@ header nav a:hover::after { width: 100%; }
     align-items: center;
     gap: 30px;
 }
-
 .slide-card .card-icon {
     flex-shrink: 0;
     width: 70px;
@@ -456,24 +432,20 @@ header nav a:hover::after { width: 100%; }
     font-size: 1.8rem;
     color: var(--bg-white);
 }
-
 .icon-orange { background-color: var(--card-orange); }
 .icon-lightblue { background-color: var(--card-lightblue); }
 .icon-green { background-color: var(--card-green); }
 .icon-purple { background-color: var(--card-purple); }
-
 .slide-card h3 {
     font-size: 1.5rem;
     color: var(--secondary-color);
     margin-bottom: 10px;
 }
-
 .slide-card p {
     font-size: 1.1rem;
     color: var(--text-light);
     line-height: 1.8;
 }
-
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -490,14 +462,12 @@ header nav a:hover::after { width: 100%; }
     z-index: 10;
     transition: all 0.3s;
 }
-
 .slider-btn:hover {
     background-color: var(--primary-color);
     color: var(--bg-white);
     transform: translateY(-50%) scale(1.1);
     box-shadow: var(--shadow-lg);
 }
-
 .slider-btn#prevBtn { left: -30px; }
 .slider-btn#nextBtn { right: -30px; }
 
@@ -624,7 +594,9 @@ footer {
     .hero-content h1 { font-size: 2rem; }
     .section-title h2 { font-size: 1.8rem; }
     .section-title p { font-size: 1rem; }
-    .flip-card { height: 260px; }
+    .flip-card { 
+        height: auto; /* <-- MODIFICADO (removido 260px) */
+    }
     .flip-card-back .explanation { font-size: 0.9rem; }
 }
 
@@ -634,23 +606,18 @@ footer {
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     will-change: opacity, transform;
 }
-
 .fade-in-up {
     transform: translateY(40px);
 }
-
 .fade-in-left {
     transform: translateX(-40px);
 }
-
 .fade-in-right {
     transform: translateX(40px);
 }
-
 .scale-in {
     transform: scale(0.9);
 }
-
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0) translateX(0) scale(1);
