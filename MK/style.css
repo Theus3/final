@@ -305,10 +305,6 @@ header nav a:hover::after { width: 100%; }
 
 
 /* SEÇÃO EFEITOS A LONGO PRAZO - TIMELINE */
-:root {
-    /* ... (variáveis já definidas no topo) ... */
-}
-
 #efeitos-longo-prazo { 
     background: var(--dark-gradient); 
     color: var(--bg-white); 
@@ -367,7 +363,11 @@ header nav a:hover::after { width: 100%; }
     transition: all 0.3s ease-in-out;
 }
 .timeline-item:hover .timeline-content { box-shadow: var(--shadow-lg); border-color: var(--accent-color); }
-.timeline-header { display: flex; align-items: center; margin-bottom: 15px; }
+.timeline-header { 
+    display: flex; 
+    align-items: flex-start; /* <-- MODIFICADO (Correção de alinhamento) */
+    margin-bottom: 15px; 
+}
 .timeline-icon {
     width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-size: 1.2rem; color: #fff; margin-right: 15px; flex-shrink: 0;
@@ -385,7 +385,8 @@ header nav a:hover::after { width: 100%; }
 .timeline-content .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
 .timeline-content .tags span {
     background-color: rgba(255, 255, 255, 0.1); color: var(--bg-white); font-size: 0.85rem;
-    padding: 5px 12px; border-radius: 20px; white-space: nowrap;
+    padding: 5px 12px; border-radius: 20px; 
+    white-space: normal; /* <-- MODIFICADO (Correção de overflow) */
 }
 .timeline-content .gravity {
     font-weight: 600; padding: 6px 15px; border-radius: 25px;
@@ -516,40 +517,48 @@ footer {
         width: 100%;
         background-color: var(--bg-white);
         box-shadow: var(--shadow-lg);
-        padding: 20px 0;
-        justify-content: center;
+        
+        /* MODIFICADO: Layout com Quebra de Linha */
+        overflow-x: hidden; 
+        justify-content: center; 
+        padding: 20px;
     }
     header nav.active {
         display: flex;
-        flex-direction: column;
+        flex-direction: row; /* MODIFICADO */
     }
     header nav ul {
-        flex-direction: column;
+        flex-direction: row; /* MODIFICADO */
         align-items: center;
-        gap: 0;
-        width: 100%;
+        width: 100%; /* MODIFICADO */
+
+        /* ADICIONADO/MODIFICADO */
+        flex-wrap: wrap; 
+        justify-content: center; 
+        white-space: normal;
+        gap: 15px 25px;
     }
     header nav li {
-        width: 100%;
-        text-align: center;
+        width: auto; /* MODIFICADO */
+        text-align: center; /* MODIFICADO */
     }
     header nav a {
-        padding: 15px;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid var(--border-color);
+        padding: 5px 10px; /* MODIFICADO */
+        display: inline-block; /* MODIFICADO */
+        width: auto; /* MODIFICADO */
+        border-bottom: none; /* MODIFICADO */
     }
     header nav li:last-child a {
         border-bottom: none;
     }
     header nav a::after {
-        display: none;
+        display: none; /* MODIFICADO */
     }
     .menu-toggle {
         display: block;
     }
     #hero h1 {
-        font-size: 2.8rem;
+        font-size: 1.3rem;
     }
     #hero {
         padding: 180px 0 140px;
@@ -572,6 +581,10 @@ footer {
     .references-grid { grid-template-columns: 1fr; }
     
     .timeline::after { left: 20px; }
+    /* ADICIONADO: Correção da seta da timeline */
+    .timeline::before {
+        left: 20px;
+    }
     .timeline-item { width: 100%; padding-left: 60px; padding-right: 15px; }
     .timeline-item:nth-child(even) { left: 0; }
     .timeline-dot { left: 10px; }
@@ -591,11 +604,17 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 { font-size: 2rem; }
+    #hero {
+        padding: 140px 0 100px; /* <-- ADICIONADO (Reduz padding superior) */
+    }
+    .hero-content h1 { 
+        font-size: 1.6rem; /* <-- MODIFICADO (Reduzido de 1.8rem) */
+        line-height: 1.4;
+    }
     .section-title h2 { font-size: 1.8rem; }
     .section-title p { font-size: 1rem; }
     .flip-card { 
-        height: auto; /* <-- MODIFICADO (removido 260px) */
+        height: auto; 
     }
     .flip-card-back .explanation { font-size: 0.9rem; }
 }
