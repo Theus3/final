@@ -1,7 +1,7 @@
 /* GERAL E VARIÁVEIS */
 :root {
-    --primary-color: #006d77; 
-    --secondary-color: #0d2c54; 
+    --primary-color: #0a3c24; 
+    --secondary-color: #3a888b; 
     --accent-color: #83c5be; 
     --dark-gradient: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     --bg-light: #f8fafc;
@@ -197,51 +197,181 @@ header nav a:hover::after { width: 100%; }
     justify-content: center; gap: 30px; perspective: 1000px;
     max-width: 800px; margin: 0 auto;
 }
-.flip-card { background-color: transparent; width: 100%; height: 280px; border: none; cursor: pointer; }
+.flip-card { 
+    background-color: transparent; 
+    width: 100%; 
+    height: 380px; 
+    border: none; 
+    cursor: pointer; 
+}
+
+.consequence-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center; 
+    gap: 30px; 
+    perspective: 1000px;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+.flip-card { 
+    background-color: transparent; 
+    width: 100%; 
+    height: 380px; 
+    border: none; 
+    cursor: pointer; 
+}
 .flip-card-inner {
-    position: relative; width: 100%; height: 100%;
-    transition: transform 0.7s; transform-style: preserve-3d;
-    border-radius: var(--border-radius); box-shadow: var(--shadow);
+    position: relative; 
+    width: 100%; 
+    height: 100%;
+    transition: transform 0.7s; 
+    transform-style: preserve-3d;
+    border-radius: var(--border-radius); 
+    box-shadow: var(--shadow);
 }
-.flip-card-inner.is-flipped { transform: rotateY(180deg); }
+.flip-card-inner.is-flipped { 
+    transform: rotateY(180deg); 
+}
 .flip-card-front, .flip-card-back {
-    position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden;
-    backface-visibility: hidden; border-radius: var(--border-radius); padding: 30px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; 
+    border-radius: var(--border-radius); 
+    padding: 30px; 
 }
-.flip-card-front { background-color: var(--bg-white); }
-.flip-card-back {
-    background: var(--dark-gradient);
-    color: white; transform: rotateY(180deg); text-align: center;
+
+/* --- FRENTE DO CARD --- */
+.flip-card-front { 
+    background-color: var(--bg-white); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
 }
 .flip-card-front .card-icon {
-    width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem; color: #fff; margin-bottom: 25px;
+    width: 70px; 
+    height: 70px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.8rem; 
+    color: #fff; 
+    margin-bottom: 25px;
 }
+
+/* ADICIONADO PARA COLORIR O FUNDO DOS ÍCONES DE "CONSEQUÊNCIAS" */
 .flip-card-front .card-icon.orange { background-color: var(--card-orange); }
 .flip-card-front .card-icon.lightblue { background-color: var(--card-lightblue); }
 .flip-card-front .card-icon.green { background-color: var(--card-green); }
 .flip-card-front .card-icon.purple { background-color: var(--card-purple); }
-.flip-card-front h3 { font-size: 1.4rem; color: var(--secondary-color); }
-.flip-card-back h4 { font-size: 1.3rem; margin-bottom: 1rem; color: #fff; }
-.flip-card-back .nutrients { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; margin-bottom: 1rem; }
-.flip-card-back .explanation { font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.95); }
+
+
+/* --- VERSO DO CARD (AJUSTES DE ESTÉTICA E ESPAÇAMENTO) --- */
+.flip-card-back {
+    background: var(--dark-gradient); 
+    color: white; 
+    transform: rotateY(180deg); 
+    text-align: left; 
+    padding: 30px 25px; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.flip-card-back h4 { 
+    font-size: 1.5rem; 
+    color: var(--light-text);
+    margin-bottom: 1.5rem; 
+    text-align: center; 
+    padding-bottom: 8px; 
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); 
+}
+
+.flip-card-back p { 
+    margin-bottom: 1rem; 
+}
+
+.flip-card-back .nutrients { 
+    font-size: 0.95rem; 
+    color: var(--light-text);
+    line-height: 1.4; 
+    margin-bottom: 0; 
+}
+.flip-card-back .nutrients strong {
+    color: var(--card-orange); 
+}
+
+.flip-card-back .explanation { 
+    font-size: 0.95rem; 
+    line-height: 1.7; 
+    color: var(--soft-text); 
+    margin-top: 0.8rem; 
+    margin-bottom: 0; 
+    padding-top: 0.8rem; 
+    border-top: 1px dashed rgba(255, 255, 255, 0.2); 
+}
+
+.flip-card-back .explanation strong {
+    color: var(--light-text);
+}
 
 
 /* SEÇÃO EFEITOS A LONGO PRAZO - TIMELINE */
-#efeitos-longo-prazo { background: var(--dark-gradient); color: var(--bg-white); }
+:root {
+    --accent-color: #4FC3F7; 
+    --timeline-red: #EF4444; 
+    --timeline-orange: #F97316;
+    --timeline-purple: #A855F7;
+}
+
+#efeitos-longo-prazo { 
+    background: var(--dark-gradient); 
+    color: var(--bg-white); 
+}
 #efeitos-longo-prazo .section-title h2 { color: var(--bg-white); }
 #efeitos-longo-prazo .section-title p { color: rgba(255, 255, 255, 0.85); }
 #efeitos-longo-prazo .subtitle-tag.warning { background-color: rgba(239, 68, 68, 0.2); color: #fef2f2; }
-.timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 20px 0; }
-.timeline::after {
-    content: ''; position: absolute; width: 3px;
-    background-image: linear-gradient(to bottom, var(--accent-color), var(--bg-white), var(--accent-color));
-    top: 0; bottom: 0; left: 50%; margin-left: -1.5px; z-index: 0;
+
+.timeline { 
+    position: relative; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px 0 40px 0; 
 }
+
+.timeline::after {
+    content: ''; 
+    position: absolute; 
+    width: 3px;
+    background: var(--accent-color, #4FC3F7); 
+    top: 0; 
+    bottom: 0; 
+    left: 50%; 
+    margin-left: -1.5px; 
+    z-index: 0;
+}
+
+.timeline::before {
+    content: ''; 
+    position: absolute; 
+    bottom: -15px; 
+    left: 50%; 
+    width: 0;
+    height: 0;
+    border-top: 15px solid var(--accent-color, #4FC3F7); 
+    border-left: 15px solid transparent; 
+    border-right: 15px solid transparent; 
+    transform: translateX(-50%); 
+    z-index: 1; 
+}
+
 .timeline-item { padding: 10px 40px; position: relative; width: 50%; margin-bottom: 30px; }
 .timeline-item:nth-child(odd) { left: 0; }
 .timeline-item:nth-child(even) { left: 50%; }
+
 .timeline-dot {
     content: ''; position: absolute; width: 20px; height: 20px; background-color: var(--secondary-color);
     border: 4px solid var(--accent-color);
@@ -267,6 +397,11 @@ header nav a:hover::after { width: 100%; }
 .timeline-icon.purple { background-color: var(--timeline-purple); }
 .timeline-content h3 { font-size: 1.3rem; color: var(--bg-white); }
 .timeline-date { display: block; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 10px; }
+.timeline-content p {
+    color: rgba(255, 255, 255, 0.95); 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+}
 .timeline-content .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
 .timeline-content .tags span {
     background-color: rgba(255, 255, 255, 0.1); color: var(--bg-white); font-size: 0.85rem;
@@ -279,10 +414,8 @@ header nav a:hover::after { width: 100%; }
 .gravity.moderada { color: #facc15; background-color: rgba(250, 204, 21, 0.2); }
 .gravity.grave { color: #f87171; background-color: rgba(248, 113, 113, 0.2); }
 
-/* ========================================
-NOVA SEÇÃO CURIOSIDADES (CARROSSEL)
-========================================
-*/
+
+/* SEÇÃO CURIOSIDADES (CARROSSEL) */
 .slider-wrapper {
     max-width: 800px;
     margin: 0 auto;
@@ -297,11 +430,10 @@ NOVA SEÇÃO CURIOSIDADES (CARROSSEL)
 
 .slider-track {
     display: flex;
-    /* transition será definida pelo JS */
 }
 
 .slide-card {
-    flex: 0 0 100%; /* Cada card ocupa 100% do container */
+    flex: 0 0 100%; 
     width: 100%;
     background-color: var(--bg-white);
     border: 1px solid var(--border-color);
@@ -325,7 +457,6 @@ NOVA SEÇÃO CURIOSIDADES (CARROSSEL)
     color: var(--bg-white);
 }
 
-/* Cores dos ícones do carrossel */
 .icon-orange { background-color: var(--card-orange); }
 .icon-lightblue { background-color: var(--card-lightblue); }
 .icon-green { background-color: var(--card-green); }
@@ -343,7 +474,6 @@ NOVA SEÇÃO CURIOSIDADES (CARROSSEL)
     line-height: 1.8;
 }
 
-/* Botões do Slider */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -368,8 +498,8 @@ NOVA SEÇÃO CURIOSIDADES (CARROSSEL)
     box-shadow: var(--shadow-lg);
 }
 
-.slider-btn#prevBtn { left: -25px; }
-.slider-btn#nextBtn { right: -25px; }
+.slider-btn#prevBtn { left: -30px; }
+.slider-btn#nextBtn { right: -30px; }
 
 
 /* SEÇÃO DE REFERÊNCIAS */
@@ -407,8 +537,6 @@ footer {
 }
 
 /* RESPONSIVIDADE */
-
-/* Tablets e Telas Menores (abaixo de 992px) */
 @media (max-width: 992px) {
     header nav {
         display: none;
@@ -458,7 +586,6 @@ footer {
     }
 }
 
-/* Celulares (abaixo de 768px) */
 @media (max-width: 768px) {
     .section-padded, .section-padded-light {
         padding: 60px 0;
@@ -484,7 +611,6 @@ footer {
         right: auto;
     }
     
-    /* Responsividade do Carrossel */
     .slide-card {
         flex-direction: column;
         text-align: center;
@@ -494,7 +620,6 @@ footer {
     .slider-btn#nextBtn { right: -15px; }
 }
 
-/* Telas muito pequenas (abaixo de 480px) */
 @media (max-width: 480px) {
     .hero-content h1 { font-size: 2rem; }
     .section-title h2 { font-size: 1.8rem; }
@@ -503,21 +628,13 @@ footer {
     .flip-card-back .explanation { font-size: 0.9rem; }
 }
 
-/* ========================================
-NOVO: ANIMAÇÕES DE SCROLL REVEAL
-========================================
-*/
-
-/* 1. O estado "antes" (escondido) */
+/* ANIMAÇÕES DE SCROLL REVEAL */
 .animate-on-scroll {
     opacity: 0;
-    /* Duração e suavização da animação */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    /* Garante que a animação não "pisque" antes de começar */
     will-change: opacity, transform;
 }
 
-/* 2. Tipos de animação (de onde o elemento vem) */
 .fade-in-up {
     transform: translateY(40px);
 }
@@ -534,14 +651,11 @@ NOVO: ANIMAÇÕES DE SCROLL REVEAL
     transform: scale(0.9);
 }
 
-/* 3. O estado "depois" (visível) - aplicado pelo JS */
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0) translateX(0) scale(1);
 }
 
-
-/* 4. Atraso (Stagger) para grids de cards */
 .grid-4-cols .card:nth-child(2),
 .consequence-grid .flip-card:nth-child(2),
 .references-grid .reference-card:nth-child(2) {
@@ -560,7 +674,6 @@ NOVO: ANIMAÇÕES DE SCROLL REVEAL
     transition-delay: 0.3s;
 }
 
-/* Delay para o restante das referências */
 .references-grid .reference-card:nth-child(5) {
     transition-delay: 0.4s;
 }
@@ -572,4 +685,4 @@ NOVO: ANIMAÇÕES DE SCROLL REVEAL
 }
 .references-grid .reference-card:nth-child(8) {
     transition-delay: 0.7s;
-}   
+}
